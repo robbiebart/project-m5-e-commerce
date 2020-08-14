@@ -7,7 +7,7 @@ export default function ComparePrice(store, price, multiplier) {
 
   return (
     <PriceDiv>
-      <PriceColour store={store}>{storePrice}</PriceColour>
+      <PriceColour store={store}>$ {storePrice}</PriceColour>
       <p>{store} Price</p>
     </PriceDiv>
   );
@@ -21,5 +21,4 @@ const PriceDiv = styled.div`
 
 const PriceColour = styled.p`
   color: ${(p) => (p.store === "ARK" ? "black" : "gray")};
-  /* color: ${({ store }) => (store === "ARK" ? "black" : "gray")}; */
 `;

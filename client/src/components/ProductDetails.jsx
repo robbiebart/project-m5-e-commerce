@@ -5,10 +5,13 @@ import { starFull } from "react-icons-kit/icomoon/starFull";
 import { starHalf } from "react-icons-kit/icomoon/starHalf";
 import styled, { css } from "styled-components";
 
+import { useShopContext } from "../context/ShopContext";
+import { addItemToCart } from "../context/actions";
 import ComparePrice from "./ComparePrice";
 import { checkAvailability } from "./Product";
 
 export default () => {
+  const { dispatch } = useShopContext();
   const [item, setItem] = useState(null);
   const { productId } = useParams();
 
@@ -18,15 +21,15 @@ export default () => {
       .then((data) => {
         setItem(data);
       });
-  }, [ productId ]);
+  }, [productId]);
 
-  console.log(item, productId)
+  console.log(item, productId);
 
   return (
     <>
       {item && (
         <GridWrapper>
-          <Image src={ item.imageSrc } alt={ item.name } />
+          <Image src={item.imageSrc} alt={item.name} />
 
           <NameReviewDiv>
             <NameReviewContent>
@@ -53,7 +56,9 @@ export default () => {
 
           <AddToCart>
             <>{ComparePrice("ARK", item.price, 1)}</>
-            <AddToCartBtn>Add to Cart</AddToCartBtn>
+            <AddToCartBtn onClick={() => dispatch(addItemToCart(item.id))}>
+              Add to Cart
+            </AddToCartBtn>
             <Availability
               available={checkAvailability(item.numInStock).available}
             >
@@ -96,7 +101,7 @@ export default () => {
       )}
     </>
   );
-}
+};
 
 const ProductName = styled.p`
   padding: 5px 10px;
@@ -135,7 +140,8 @@ const Image = styled.img`
   width: 310px;
   grid-row-start: row1;
 
-  @media (min-width: 768px) {}
+  @media (min-width: 768px) {
+  }
 `;
 
 const NameReviewDiv = styled.div`
