@@ -65,7 +65,7 @@ export default () => {
                         </ItemQuant>
                         <ItemPrice>{item.price}</ItemPrice>
                         <ItemTotal>
-                          ${priceStrToNumber(item.price) * 2}
+                          ${priceStrToNumber(item.price) * 1}
                         </ItemTotal>
                       </Quantity>
                     </ItemWrapper>

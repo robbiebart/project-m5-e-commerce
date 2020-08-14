@@ -70,7 +70,13 @@ export default () => {
         >
           Log in
         </LoginBtn>
-        <SignUpBtn onClick={handleSignUp}>Sign Up</SignUpBtn>
+        <SignUpBtn
+          onClick={handleSignUp}
+          currentUser={currentUser}
+          signedIn={signedIn}
+        >
+          Sign Up
+        </SignUpBtn>
         <SignoutBtn
           onClick={handleSignout}
           currentUser={currentUser}
@@ -116,7 +122,7 @@ const BtnWrapper = styled.div`
 `;
 
 const LoginBtn = styled.button`
-  display: ${(p) => (p.signedIn && "none")};
+  display: ${(p) => (p.currentUser && p.signedIn && "none")};
   border: 1px solid #ccc;
   background: none;
   padding: 12px 10px;
@@ -130,9 +136,7 @@ const LoginBtn = styled.button`
   }
 `;
 
-const SignUpBtn = styled(LoginBtn)`
-  display: flex;
-`;
+const SignUpBtn = styled(LoginBtn)``;
 
 const SignoutBtn = styled(LoginBtn)`
   display: ${(p) => p.currentUser && p.signedIn ? "flex" : "none"};

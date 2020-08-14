@@ -11,7 +11,9 @@ export default () => {
   const { dispatch } = useShopContext();
 
   const handleCategoryClick = (title) => {
-    dispatch(setCategory(title));
+    title === "All Categories"
+      ? dispatch(setCategory("All"))
+      : dispatch(setCategory(title));
   };
 
   return (
